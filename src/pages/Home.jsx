@@ -35,10 +35,10 @@ function Home({ openModal }) {
           <div className="hero-copy reveal">
             <span className="eyebrow">Welcome to KAYBROS Spacialmetric Limited</span>
             <h1>
-              We build spaces that <span className="accent">stand strong</span>
+              We build spaces that <span className="accent">stand test of Time and Nature</span>
             </h1>
             <p className="lead">
-              Design, construction, geotechnical and mining support across Kenya, under one team.
+              Design, construction, geotechnical and mining support across Africa, under one team.
             </p>
 
             <div className="hero-actions">
