@@ -1,17 +1,27 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import EcoDiagram from "../components/EcoDiagram";
 import "../styles/about.css";
 
 function About() {
   return (
     <>
+      <Helmet>
+        <title>About Us | KAYBROS Spacialmetric Limited</title>
+        <meta
+          name="description"
+          content="Learn about KAYBROS Spacialmetric Limited, a Kenyan team combining construction, civil engineering, geotechnical and mining expertise with care for the land."
+        />
+        <link rel="canonical" href="https://kaybros.co.ke/about" />
+      </Helmet>
+
       <section className="eco-section">
         <div className="shell eco-grid">
           <div className="eco-copy reveal">
-            
-            <h2>
-              Building and mining with<br></br> <span className="eco-heading-accent">respect for the land</span>
-            </h2>
+            <h1>
+              Building and mining with<br />{" "}
+              <span className="eco-heading-accent">respect for the land</span>
+            </h1>
             <p className="lead">
               Every site we work on is part of a living landscape. We plan, build and mine in ways
               that protect the ground, the water and the communities around it, so that what we
@@ -55,13 +65,15 @@ function About() {
             <div className="collage-main">
               <img
                 src="/images/kwale3.webp"
-                alt="Modern residential home exterior"
+                alt="Modern residential home exterior built by KAYBROS in Kwale"
+                loading="lazy"
               />
             </div>
             <div className="collage-small">
               <img
                 src="/images/kwale1.webp"
-                alt="Construction team reviewing site work"
+                alt="Completed mansionette project in Kwale, Kenya"
+                loading="lazy"
               />
             </div>
             <div className="collage-tag">

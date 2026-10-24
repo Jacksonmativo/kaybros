@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import "../styles/projects.css";
 
 const PROJECTS = [
   {
-    category: " altra modern Residential",
+    category: "Residential",
     title: "Altra Modern Residential",
     description: "A modern residential project designed for contemporary living.",
-    location: "voi",
-    image: "/images/alt1.png",
-    gallery: ["/images/alt1.png", "/images/alt4.png", "/images/alt3.webp", "/images/alt4.webp"],
+    location: "Voi",
+    image: "/images/alt1.webp",
+    gallery: ["/images/alt1.webp", "/images/alt3.webp", "/images/alt4.webp"],
   },
   {
     category: "Residential",
@@ -19,32 +20,30 @@ const PROJECTS = [
     image: "/images/kwale1.webp",
     gallery: ["/images/kwale1.webp", "/images/kwale2.webp", "/images/kwale3.webp", "/images/kwale4.webp", "/images/kwale5.webp", "/images/kwale6.webp", "/images/kwale7.webp", "/images/kwale8.webp"],
   },
-
   {
-    category: "bedsiter unit",
+    category: "Bedsitter units",
     title: "Bedsitter units",
     description: "A set of bedsitter units designed for efficient living and modern aesthetics.",
-    location: "VOI",
+    location: "Voi",
     image: "/images/bs1.webp",
     gallery: ["/images/bs1.webp", "/images/bs2.webp", "/images/bs3.webp", "/images/bs4.webp", "/images/bs5.webp", "/images/bs6.webp"],
   },
   {
     category: "Residential",
-    title: "Residential 3bedroom mansionette",
+    title: "Residential 3 bedroom mansionette",
     description: "A 3-bedroom mansionette designed for comfortable family living.",
-    location: "TAVETA",
+    location: "Taveta",
     image: "/images/ma2.webp",
-    gallery: ["/images/ma1.webp", "/images/ma2.webp", "/images/ma3.webp", "/images/ma4.webp" ],
+    gallery: ["/images/ma1.webp", "/images/ma2.webp", "/images/ma3.webp", "/images/ma4.webp"],
   },
-   {
-    Category: "residential",
-    title: "Residential 3bedroom Bungalow",
+  {
+    category: "Residential",
+    title: "Residential 3 bedroom Bungalow",
     description: "A 3-bedroom bungalow designed for comfortable family living.",
     location: "Machakos",
     image: "/images/B7.webp",
-    gallery: ["/images/B1.webp", "/images/B2.webp", "/images/B3.webp", "/images/B4.webp", "/images/B5.webp", "/images/B6.webp", "/images/B7.webp", "/images/B8.webp", "/images/B9.webp", ],
-   },
-
+    gallery: ["/images/B1.webp", "/images/B2.webp", "/images/B3.webp", "/images/B4.webp", "/images/B5.webp", "/images/B6.webp", "/images/B7.webp", "/images/B8.webp", "/images/B9.webp"],
+  },
   {
     category: "Residential",
     title: "Modern residential home",
@@ -88,13 +87,12 @@ const PROJECTS = [
     gallery: ["/images/interior1.webp", "/images/interior2.webp", "/images/interior3.webp", "/images/interior4.webp", "/images/interior5.webp", "/images/interior6.webp"],
   },
   {
-    category: "one bedroom units",
-    title: "modern one bedroom units",
-    description: "Modern One bedroom with specious balcony",
+    category: "One bedroom units",
+    title: "Modern one bedroom units",
+    description: "Modern one bedroom units with a spacious balcony.",
     image: "/images/1b.webp",
-    gallery: ["images/1b.webp"]
-
-  }
+    gallery: ["/images/1b.webp"],
+  },
 ];
 
 function getCardStyle(index, activeIndex) {
@@ -166,43 +164,41 @@ function Projects() {
     const section = projectsSectionRef.current;
     if (!section || viewerProject) return undefined;
 
-   const isProjectsInView = () => {
-  if (window.matchMedia("(max-width: 768px), (prefers-reduced-motion: reduce)").matches) {
-    return false;
-  }
+    const isProjectsInView = () => {
+      if (window.matchMedia("(max-width: 768px), (prefers-reduced-motion: reduce)").matches) {
+        return false;
+      }
 
-  const fan = fanRef.current;
-  if (!fan) return false;
+      const fan = fanRef.current;
+      if (!fan) return false;
 
-  const bounds = fan.getBoundingClientRect();
-  const tolerance = 40; // slack for the card scale and 3D tilt
+      const bounds = fan.getBoundingClientRect();
+      const tolerance = 40; // slack for the card scale and 3D tilt
 
-  // Lock only when the whole card stack is on screen
-  return bounds.top >= -tolerance && bounds.bottom <= window.innerHeight + tolerance;
-};
+      // Lock only when the whole card stack is on screen
+      return bounds.top >= -tolerance && bounds.bottom <= window.innerHeight + tolerance;
+    };
 
-  
+    const advanceWithScroll = (event, distance) => {
+      if (!isProjectsInView() || distance === 0) return;
 
-  const advanceWithScroll = (event, distance) => {
-    if (!isProjectsInView() || distance === 0) return;
+      const direction = distance > 0 ? 1 : -1;
+      const nextProject = activeProject + direction;
 
-    const direction = distance > 0 ? 1 : -1;
-    const nextProject = activeProject + direction;
+      // At the first project (scrolling up) or last project (scrolling down):
+      // don't block, so the page scrolls normally
+      if (nextProject < 0 || nextProject >= PROJECTS.length) return;
 
-    // At the first project (scrolling up) or last project (scrolling down):
-    // don't block, so the page scrolls normally
-    if (nextProject < 0 || nextProject >= PROJECTS.length) return;
+      // Everywhere in between: always block page scroll, even during cooldown
+      event.preventDefault();
 
-    // Everywhere in between: always block page scroll, even during cooldown
-    event.preventDefault();
-
-    if (gestureLocked.current) return;
-    gestureLocked.current = true;
-    selectProject(nextProject);
-    window.setTimeout(() => {
-      gestureLocked.current = false;
-    }, 550);
-  };
+      if (gestureLocked.current) return;
+      gestureLocked.current = true;
+      selectProject(nextProject);
+      window.setTimeout(() => {
+        gestureLocked.current = false;
+      }, 550);
+    };
 
     const handleWheel = (event) => advanceWithScroll(event, event.deltaY);
     const handleTouchStart = (event) => {
@@ -262,11 +258,20 @@ function Projects() {
 
   return (
     <>
+      <Helmet>
+        <title>Our Projects | KAYBROS Construction Kenya</title>
+        <meta
+          name="description"
+          content="Browse KAYBROS projects across Kenya: mansionettes, bungalows, bedsitter units, interiors, car shades and more, built in Kwale, Voi, Taveta and Machakos."
+        />
+        <link rel="canonical" href="https://kaybros.co.ke/projects" />
+      </Helmet>
+
       <section id="projects" ref={projectsSectionRef}>
         <div className="shell">
           <div className="section-head reveal">
             <div>
-              <h2 className="projects-heading"> Our Projects </h2>
+              <h1 className="projects-heading">Our Projects</h1>
             </div>
           </div>
           <div className="project-fan reveal" ref={fanRef} aria-label="Selected projects">
@@ -315,7 +320,12 @@ function Projects() {
                   tabIndex="0"
                   aria-label={`View ${project.title}`}
                 >
-                  <img className="project-fan-image" src={project.image} alt={`${project.title} project`} loading={index === activeProject ? "eager" : "lazy"} />
+                  <img
+                    className="project-fan-image"
+                    src={project.image}
+                    alt={`${project.title} project`}
+                    loading={index === activeProject ? "eager" : "lazy"}
+                  />
                   <span className="project-fan-shade" />
                   <span className="project-fan-info">
                     <strong>{project.title}</strong>
@@ -413,8 +423,6 @@ function Projects() {
           </div>
         </div>
       )}
-
-
     </>
   );
 }

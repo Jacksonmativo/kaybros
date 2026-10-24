@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import "../styles/geotechnical-mining.css";
 
 const PROJECTS = [
@@ -25,7 +26,7 @@ const PROJECTS = [
     title: "Gabion retaining walls",
     description:
       "Stepped gabion walls built to retain slopes and manage erosion, with stone-filled wire baskets placed to design.",
-    images: ["/images/geo5.webp", "/images/geo8.webp", "/images/gab1.webp","/images/gab2.webp"],
+    images: ["/images/geo5.webp", "/images/geo8.webp", "/images/gab1.webp", "/images/gab2.webp"],
   },
   {
     title: "Quarry & mining operations",
@@ -54,7 +55,7 @@ function CutoutImage({ src, alt = "" }) {
         </defs>
       </svg>
 
-      <img className="gm-feature-image-cutout-img" src={src} alt={alt} loading="lazy" />
+      <img className="gm-feature-image-cutout-img" src={src} alt={alt} loading="eager" />
     </div>
   );
 }
@@ -76,57 +77,71 @@ function GeotechnicalMining({ openModal }) {
   }, []);
 
   return (
-    <div className="geotechnical-page">
-      <section className="gm-hero">
-        <div className="shell gm-hero-grid">
-          <div>
-            <h1>Geotechnical &amp; Mining</h1>
-            <p className="lead">We carry out drilling, sampling, and topographic surveys to show you what lies beneath a site. We also build gabion walls and support quarry operations across Kenya.</p>
-            <button className="button" onClick={openModal}>
-              Start a project
-            </button>
-          </div>
-          <CutoutImage src="/images/geo3.webp" alt="Drilling and ground investigation" />
-        </div>
-      </section>
+    <>
+      <Helmet>
+        <title>Geotechnical & Mining Support in Kenya | KAYBROS</title>
+        <meta
+          name="description"
+          content="KAYBROS provides drilling, ground investigation, topographic surveys, gabion retaining walls and quarry support for construction and mining projects across Kenya."
+        />
+        <link rel="canonical" href="https://kaybros.co.ke/geotechnical-mining" />
+      </Helmet>
 
-      {/* ...scope section unchanged... */}
-
-      <section className="gm-samples">
-        <div className="shell">
-          <div className="section-head">
+      <div className="geotechnical-page">
+        <section className="gm-hero">
+          <div className="shell gm-hero-grid">
             <div>
-              <h2>Projects</h2>
+              <h1>Geotechnical &amp; Mining</h1>
+              <p className="lead">
+                We carry out drilling, sampling, and topographic surveys to show you what lies beneath a site. We also build gabion walls and support quarry operations across Kenya.
+              </p>
+              <button className="button" onClick={openModal}>
+                Start a project
+              </button>
             </div>
-            <Link className="button outline" to="/projects">
-              View all projects <span aria-hidden="true">↗</span>
-            </Link>
+            <CutoutImage src="/images/geo3.webp" alt="Drilling and ground investigation" />
           </div>
+        </section>
 
-          <div className="gm-samples-grid">
-            {PROJECTS.map((project, projectIndex) => (
-              <article className="gm-sample" key={project.title}>
-                <div className={`gm-sample-images${project.images.length > 1 ? " is-rotating" : ""}`}>
-                  {project.images.map((src, i) => (
-                    <img
-                      key={src}
-                      src={src}
-                      alt={`${project.title} ${i + 1}`}
-                      className={i === activeImageIndices[projectIndex] ? "is-active" : ""}
-                      aria-hidden={i !== activeImageIndices[projectIndex]}
-                    />
-                  ))}
-                </div>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-              </article>
-            ))}
+        {/* ...scope section unchanged... */}
+
+        <section className="gm-samples">
+          <div className="shell">
+            <div className="section-head">
+              <div>
+                <h2>Projects</h2>
+              </div>
+              <Link className="button outline" to="/projects">
+                View all projects <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+
+            <div className="gm-samples-grid">
+              {PROJECTS.map((project, projectIndex) => (
+                <article className="gm-sample" key={project.title}>
+                  <div className={`gm-sample-images${project.images.length > 1 ? " is-rotating" : ""}`}>
+                    {project.images.map((src, i) => (
+                      <img
+                        key={src}
+                        src={src}
+                        alt={`${project.title} ${i + 1}`}
+                        className={i === activeImageIndices[projectIndex] ? "is-active" : ""}
+                        aria-hidden={i !== activeImageIndices[projectIndex]}
+                        loading="lazy"
+                      />
+                    ))}
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ...contact section unchanged... */}
-    </div>
+        {/* ...contact section unchanged... */}
+      </div>
+    </>
   );
 }
 

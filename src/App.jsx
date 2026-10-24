@@ -1,20 +1,50 @@
 import { useEffect, useState } from "react";
-import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Home from "./pages/Home";
-import Services from "./pages/Services";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import GeotechnicalMining from "./pages/GeotechnicalMining";
 
+// Create a free form at https://formspree.io and paste your form ID here
+const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+function NotFound() {
+  return (
+    <>
+      <Helmet>
+        <title>Page not found | KAYBROS</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
+      <section className="shell" style={{ padding: "120px 0", textAlign: "center" }}>
+        <h1>Page not found</h1>
+        <p>The page you're looking for doesn't exist.</p>
+        <Link className="button" to="/">Back to home</Link>
+      </section>
+    </>
+  );
+}
+
 function App() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [toastVisible, setToastVisible] = useState(false);
+  const [toast, setToast] = useState({ visible: false, message: "" });
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (location.hash) {
+      const target = document.querySelector(location.hash);
+      if (target) {
+        target.scrollIntoView();
+      } else {
+        window.scrollTo(0, 0);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+
     const revealElements = document.querySelectorAll(".reveal");
     const observer = new IntersectionObserver(
       (entries) => {
@@ -29,7 +59,7 @@ function App() {
     );
     revealElements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   const openModal = () => {
     setModalOpen(true);
@@ -41,12 +71,34 @@ function App() {
     document.body.classList.remove("menu-open");
   };
 
-  const handleSubmit = (event) => {
+  const showToast = (message) => {
+    setToast({ visible: true, message });
+    window.setTimeout(() => setToast((current) => ({ ...current, visible: false })), 4000);
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    closeModal();
-    setToastVisible(true);
-    event.target.reset();
-    window.setTimeout(() => setToastVisible(false), 4000);
+    if (submitting) return;
+
+    const form = event.target;
+    setSubmitting(true);
+
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      if (!response.ok) throw new Error("Request failed");
+
+      closeModal();
+      form.reset();
+      showToast("Thanks, we've received your enquiry and will be in touch soon.");
+    } catch {
+      showToast("Sorry, something went wrong. Please email or call us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const closeMenu = () => {
@@ -59,7 +111,8 @@ function App() {
       <header>
         <div className="shell nav">
           <Link className="brand" to="/" aria-label="KAYBROS home">
-            <img className="brand-mark" src="/logo/1000995788.png" alt="" /></Link>
+            <img className="brand-mark" src="/logo/1000995788.png" alt="" />
+          </Link>
 
           <button
             className="menu-toggle"
@@ -75,7 +128,7 @@ function App() {
           </button>
 
           <nav className={`nav-links ${menuOpen ? "open" : ""}`} aria-label="Main navigation">
-            <Link to="/home" onClick={closeMenu}>Home</Link>
+            <Link to="/" onClick={closeMenu}>Home</Link>
             <Link to="/geotechnical-mining" onClick={closeMenu}>Geotechnical &amp; Mining</Link>
             <Link to="/projects" onClick={closeMenu}>Projects</Link>
             <Link to="/about" onClick={closeMenu}>About</Link>
@@ -89,13 +142,12 @@ function App() {
       <main id="top">
         <Routes>
           <Route path="/" element={<Home openModal={openModal} />} />
-          <Route path="/home" element={<Home openModal={openModal} />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
           <Route path="/geotechnical-mining" element={<GeotechnicalMining openModal={openModal} />} />
-        
-          <Route path="/services" element={<Services openModal={openModal} />} />
           <Route path="/projects" element={<Projects openModal={openModal} />} />
           <Route path="/about" element={<About openModal={openModal} />} />
           <Route path="/contact" element={<Contact openModal={openModal} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
@@ -103,41 +155,43 @@ function App() {
         <div className="shell">
           <div className="footer-grid">
             <div>
-              <Link className="brand" to="/" aria-label="KAYBROS pnge">
+              <Link className="brand" to="/" aria-label="KAYBROS home">
                 <img className="brand-mark" src="/logo/1000995788.png" alt="" />
                 <span className="brand-name">
                   KAYBROS <small>Quality engineering</small>
                 </span>
               </Link>
               <p className="footer-blurb">
-                Design. Build. Renovate.Geotechnical and mining projects, done
-                with care.
+                Design. Build. Renovate. Geotechnical and mining projects, done with care.
               </p>
             </div>
 
             <div>
               <p className="footer-title">Explore</p>
               <ul>
-                <li><Link to="/services">Services</Link></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/geotechnical-mining">Geotechnical &amp; Mining</Link></li>
                 <li><Link to="/projects">Projects</Link></li>
-            
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
               </ul>
             </div>
 
             <div>
-              <p className="footer-title">Services</p>
+              <p className="footer-title">What we do</p>
               <ul>
-                <li><Link to="/services">Construction</Link></li>
-                <li><Link to="/services">Structural Engineering</Link></li>
-                <li><Link to="/services">Roofing</Link></li>
+                <li>Construction</li>
+                <li>Renovation</li>
+                <li>Roofing</li>
+                <li><Link to="/geotechnical-mining">Geotechnical &amp; Mining</Link></li>
               </ul>
             </div>
 
             <div>
               <p className="footer-title">Start a project</p>
               <ul>
-                <li><a href="mailto:hello@kaybroskenya.com">hello@kaybro.com</a></li>
-                <li><a href="tel:+254700000000">0706 676062</a></li>
+                <li><a href="mailto:info@kaybros.co.ke">info@kaybros.co.ke</a></li>
+                <li><a href="tel:+254706676062">0706 676062</a></li>
                 <li>Kenya · By appointment</li>
               </ul>
             </div>
@@ -145,7 +199,6 @@ function App() {
 
           <div className="footer-bottom">
             <span>© 2026 KAYBROS. All rights reserved.</span>
-            
           </div>
         </div>
       </footer>
@@ -159,7 +212,6 @@ function App() {
         <div className="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
           <div className="modal-head">
             <div>
-              
               <h2 id="modalTitle" style={{ fontSize: "2rem", marginTop: "12px" }}>
                 Tell us about your project.
               </h2>
@@ -186,15 +238,15 @@ function App() {
                 placeholder="What are you planning to build, renovate or improve?"
               />
             </label>
-            <button className="button form-submit" type="submit">
-              Send enquiry <span>↗</span>
+            <button className="button form-submit" type="submit" disabled={submitting}>
+              {submitting ? "Sending..." : "Send enquiry"} <span>↗</span>
             </button>
           </form>
         </div>
       </div>
 
-      <div className={`toast ${toastVisible ? "show" : ""}`}>
-        Thanks — your enquiry is ready to send.
+      <div className={`toast ${toast.visible ? "show" : ""}`} role="status" aria-live="polite">
+        {toast.message}
       </div>
     </>
   );
