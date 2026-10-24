@@ -1,0 +1,110 @@
+.service-card {
+  position: relative;
+  overflow: hidden;
+
+  background: #ffffff;
+
+  min-height: 460px;
+
+  clip-path: polygon(
+    7% 0,
+    93% 0,
+    100% 8%,
+    100% 92%,
+    93% 100%,
+    7% 100%,
+    0 92%,
+    0 8%
+  );
+
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+
+  filter:
+    drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+}
+
+.service-image {
+  height: 240px;
+  overflow: hidden;
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-image img {
+  transform: scale(1.06);
+}
+
+.service-content {
+  position: relative;
+  padding: 35px;
+}
+
+.service-number {
+  display: inline-flex;
+
+  width: 42px;
+  height: 42px;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f5c400;
+
+  border-radius: 50%;
+
+  font-weight: 700;
+}
+
+.service-content h3 {
+  margin-top: 20px;
+
+  font-size: 26px;
+}
+
+.service-content p {
+  margin-top: 12px;
+
+  line-height: 1.7;
+
+  color: #687078;
+}
+
+.card-arrow {
+  position: absolute;
+
+  right: 30px;
+  bottom: 30px;
+
+  width: 50px;
+  height: 50px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #101820;
+  color: white;
+
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.card-arrow:hover {
+  background: #f5c400;
+  color: #101820;
+}

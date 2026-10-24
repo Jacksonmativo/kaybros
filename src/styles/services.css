@@ -1,0 +1,130 @@
+.services-page {
+  padding-top: 10px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.service-card {
+  position: relative;
+  min-height: 290px;
+  padding: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(230, 231, 223, 0.8);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lift);
+}
+
+.service-card:nth-child(2) {
+  margin-top: 26px;
+}
+
+.service-card:nth-child(3) {
+  margin-top: 52px;
+}
+
+.service-card:nth-child(4) {
+  margin-top: 18px;
+}
+
+.icon-box {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 52px;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 1.25rem;
+}
+
+.service-card:nth-child(2) .icon-box {
+  background: #fce8cc;
+  color: #a36d1c;
+}
+
+.service-card:nth-child(3) .icon-box {
+  background: #f8ded8;
+  color: var(--coral);
+}
+
+.service-card:nth-child(4) .icon-box {
+  background: #e7e1f4;
+  color: #6d5798;
+}
+
+.service-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.service-number {
+  position: absolute;
+  right: 23px;
+  bottom: 18px;
+  color: #e7ebe4;
+  font-family: "Space Grotesk";
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.service-detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+  color: var(--green);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+@media (max-width: 920px) {
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-card:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .service-card:nth-child(2), .service-card:nth-child(4) {
+    transform: translateY(22px);
+  }
+}
+
+@media (max-width: 700px) {
+
+  .services-page {
+    padding-top: 60px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card:nth-child(2), .service-card:nth-child(4) {
+    transform: none;
+  }
+
+  .service-card {
+    min-height: 245px;
+  }
+  .icon-box {
+    margin-bottom: 42px;
+  }
+}
