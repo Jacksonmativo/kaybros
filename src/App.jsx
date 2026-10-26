@@ -7,8 +7,8 @@ import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import GeotechnicalMining from "./pages/GeotechnicalMining";
 
-// Create a free form at https://formspree.io and paste your form ID here
-const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+// Formspree form that emails enquiries to info@kaybros.co.ke
+const FORM_ENDPOINT = "https://formspree.io/f/mrpppeae";
 
 function NotFound() {
   return (
@@ -60,6 +60,21 @@ function App() {
     revealElements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, [location.pathname, location.hash]);
+
+  // Close the enquiry pop-up with the Escape key
+  useEffect(() => {
+    if (!modalOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setModalOpen(false);
+        document.body.classList.remove("menu-open");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [modalOpen]);
 
   const openModal = () => {
     setModalOpen(true);
@@ -193,6 +208,24 @@ function App() {
                 <li><a href="mailto:info@kaybros.co.ke">info@kaybros.co.ke</a></li>
                 <li><a href="tel:+254706676062">0706 676062</a></li>
                 <li>Kenya · By appointment</li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/kaybros.kenya/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.facebook.com/p/Kaybros-Spacialmetric-Limited-KARSSEL-100064275454893/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Facebook
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -222,6 +255,16 @@ function App() {
           </div>
 
           <form className="form-grid" onSubmit={handleSubmit}>
+            {/* Hidden spam trap and email subject for Formspree */}
+            <input
+              type="text"
+              name="_gotcha"
+              style={{ display: "none" }}
+              tabIndex="-1"
+              autoComplete="off"
+            />
+            <input type="hidden" name="_subject" value="New enquiry from kaybros.co.ke" />
+
             <label>
               Name
               <input name="name" required placeholder="Your name" />
