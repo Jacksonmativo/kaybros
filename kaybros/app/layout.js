@@ -77,6 +77,7 @@ export const metadata = {
   authors: [{ name: 'KAYBROS Spacialmetric Limited' }],
   robots: { index: true, follow: true, 'max-image-preview': 'large' },
   alternates: { canonical: 'https://kaybros.co.ke/' },
+  verification: { google: 'f6d07b3cf46aaf2e' },
   openGraph: {
     type: 'website',
     locale: 'en_KE',
