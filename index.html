@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KAYBROS | Construction, Civil Engineering &amp; Mining in kenya </title>
+    <title>KAYBROS | Construction, Civil Engineering &amp; Mining in Kenya</title>
     <meta name="description" content="KAYBROS Spacialmetric Limited delivers construction, structural engineering, geotechnical, and mining support in Kenya, with services available across Africa." />
     <meta name="author" content="KAYBROS Spacialmetric Limited" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#f7f6f1" />
     <link rel="canonical" href="https://kaybros.co.ke/" />
-      <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_KE" />
     <meta property="og:site_name" content="KAYBROS Spacialmetric Limited" />
@@ -18,12 +19,16 @@
     <meta property="og:title" content="KAYBROS | Construction, Civil Engineering &amp; Mining in Kenya" />
     <meta property="og:description" content="Construction, structural engineering, geotechnical, and mining support from KAYBROS Spacialmetric Limited in Kenya." />
     <meta property="og:image" content="https://kaybros.co.ke/images/alt1-share.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="KAYBROS | Construction, Civil Engineering &amp; Mining in Kenya" />
     <meta name="twitter:description" content="Construction, structural engineering, geotechnical, roofing, and mining support from KAYBROS Spacialmetric Limited in Kenya." />
     <meta name="twitter:image" content="https://kaybros.co.ke/images/alt1-share.jpg" />
 
+    <!-- Schema.org -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -33,11 +38,43 @@
         "logo": "https://kaybros.co.ke/favicon-192.png",
         "image": "https://kaybros.co.ke/images/alt1-share.jpg",
         "description": "Construction, structural engineering, geotechnical, roofing, and mining support in Kenya.",
+        "telephone": "+254-706-676062",
+        "email": "info@kaybros.co.ke",
+        "foundingDate": "2017",
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "Your Street Address",
+          "addressLocality": "Voi",
           "addressCountry": "KE"
         },
-        "areaServed": { "@type": "Country", "name": "Kenya" },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 3.39605° S,
+          "longitude":  38.55609° E 
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "08:00",
+            "closes": "17:00"
+          }
+        ],
+        "areaServed": [
+          { "@type": "Country", "name": "Kenya" },
+          { "@type": "Town", "name": "Voi" }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Construction & Geotechnical Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Structural Engineering" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Geotechnical Engineering" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mining Support" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Building Construction" }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roofing" }}
+          ]
+        },
         "sameAs": [
           "https://www.instagram.com/kaybros.kenya/",
           "https://www.facebook.com/p/Kaybros-Spacialmetric-Limited-KARSSEL-100064275454893/"

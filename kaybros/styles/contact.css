@@ -1,0 +1,60 @@
+.cta {
+  padding: 95px 0;
+}
+
+.cta-card {
+  margin-top: 60px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 56px 65px;
+  border-radius: 10px 50px 10px 50px;
+  background: var(--green);
+  color: white;
+  box-shadow: var(--shadow-lift);
+}
+
+.cta-card::after {
+  position: absolute;
+  right: -56px;
+  bottom: -85px;
+  width: 270px;
+  height: 270px;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 28px rgba(255, 255, 255, 0.05), 0 0 0 57px rgba(255, 255, 255, 0.045);
+}
+
+.cta-card h2 {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin-bottom: 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+}
+
+.cta-card .button {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 700px) {
+
+  .cta {
+    padding: 70px 0;
+  }
+
+  .cta-card {
+    display: block;
+    padding: 40px 30px;
+  }
+
+  .cta-card .button {
+    margin-top: 24px;
+  }
+}

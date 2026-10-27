@@ -1,0 +1,278 @@
+.gm-hero {
+  padding: 88px 0 64px;
+}
+
+.gm-hero-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 64px;
+}
+
+.gm-hero h1 {
+  max-width: 600px;
+  margin: 16px 0 20px;
+  font-size: 3.4rem;
+  line-height: 1.02;
+}
+
+.gm-hero .lead {
+  margin-bottom: 24px;
+}
+
+.gm-feature-image {
+  position: relative;
+  height: 660px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0px  0px 20px 20px;
+ 
+}
+
+.gm-feature-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gm-feature-image-cutout-wrap {
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.gm-feature-image-cutout-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.gm-feature-image-cutout-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* must stay square so the curves stay circular */
+  object-fit: cover;
+  clip-path: url(#kaybros-cutout);
+}
+ 
+/* Text + image section, used under the hero */
+.gm-feature-image-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 1.25rem;
+}
+ 
+.gm-feature-image-split h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  color: #0b4d2e; /* match your "Start a project" button green */
+}
+ 
+.gm-feature-image-split p {
+  max-width: 60ch;
+  margin: 0 0 1rem;
+  line-height: 1.7;
+  color: #3a3a3a;
+}
+ 
+@media (min-width: 860px) {
+  .gm-feature-image-split {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 6rem 1.5rem;
+  }
+ 
+  /* Put the image on the left instead: add className="split split--flip" */
+  .gm-feature-image-split--flip .cutout-wrap {
+    order: -1;
+  }
+}
+
+.gm-feature-image figcaption {
+  position: absolute;
+  z-index: 1;
+  bottom: 22px;
+  left: 24px;
+  background: linear-gradient(90deg, #060606, #03560b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 0.82rem;
+  font-weight: 700;
+  
+}
+
+.gm-scope {
+  background: #edf3eb;
+}
+
+.gm-scope-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.gm-scope-grid article {
+  padding-top: 18px;
+  border-top: 1px solid rgba(39, 107, 82, 0.25);
+}
+
+.gm-scope-grid article > span {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: var(--coral);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.gm-scope-grid h3 {
+  margin-bottom: 10px;
+}
+
+.gm-scope-grid p {
+  max-width: 330px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.gm-samples {
+  background: #fffdf9;
+}
+
+.gm-samples-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 18px;
+}
+
+.gm-sample {
+  min-width: 0;
+  margin: 0;
+}
+
+.gm-sample-images {
+  display: grid;
+  gap: 8px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+}
+
+.gm-sample-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gm-sample-images.is-rotating {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+}
+
+.gm-sample-images.is-rotating img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.gm-sample-images.is-rotating img.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gm-sample-images.is-rotating img {
+    transition: none;
+  }
+}
+
+.gm-sample h3 {
+  margin: 16px 0 6px;
+}
+
+.gm-sample p {
+  color: var(--muted, #5c6b66);
+  font-size: 0.95rem;
+}
+
+.gm-contact {
+  padding: 76px 0;
+  border-top: 1px solid var(--line);
+}
+
+.gm-contact-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.gm-contact h2 {
+  max-width: 620px;
+  margin: 12px 0 0;
+  font-size: 2.5rem;
+  line-height: 1.08;
+}
+
+@media (max-width: 900px) {
+  .gm-hero-grid {
+    gap: 32px;
+  }
+
+  .gm-feature-image {
+    height: 390px;
+  }
+
+  .gm-scope-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .gm-hero {
+    padding: 58px 0 42px;
+  }
+
+  .gm-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .gm-hero h1 {
+    font-size: 2.55rem;
+  }
+
+  .gm-feature-image {
+    height: 300px;
+  }
+
+  .gm-scope-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .gm-samples-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 12px;
+  }
+
+  .gm-contact {
+    padding: 58px 0;
+  }
+
+  .gm-contact-inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .gm-contact h2 {
+    font-size: 2rem;
+  }
+}
