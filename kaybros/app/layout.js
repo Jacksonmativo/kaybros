@@ -12,6 +12,18 @@ const SCHEMA = {
   "image": "https://kaybros.co.ke/images/alt1-share.jpg",
   "description": "KAYBROS Spacialmetric Limited offers construction services across Kenya, and geotechnical and mining support across Africa.",
   "telephone": "+254706676062",
+  "foundingDate": "2017",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Voi",
+    "addressRegion": "Taita-Taveta",
+    "addressCountry": "KE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -3.39605,
+    "longitude": 38.55609
+  },
   "email": "info@kaybros.co.ke",
   "areaServed": [
     { "@type": "Country", "name": "Kenya" },
