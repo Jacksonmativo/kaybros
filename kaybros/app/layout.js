@@ -51,6 +51,16 @@ const SCHEMA = {
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Structural Engineering", "areaServed": { "@type": "Country", "name": "Kenya" } }}
     ]
   },
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "License",
+    "name": "National Construction Authority (NCA) Registration",
+    "recognizedBy": {
+      "@type": "Organization",
+      "name": "National Construction Authority Kenya",
+      "url": "https://nca.go.ke"
+    }
+  },
   "sameAs": [
     "https://www.instagram.com/kaybros.kenya/",
     "https://www.facebook.com/p/Kaybros-Spacialmetric-Limited-KARSSEL-100064275454893/"
