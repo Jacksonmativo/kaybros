@@ -1,21 +1,27 @@
 # KAYBROS Spacialmetric Limited
 
-> Construction, civil engineering, geotechnical, and mining support company based in Nairobi, Kenya.
+> Construction, civil engineering, geotechnical, and mining company based in Kenya, serving clients across Africa.
 
 ## About
-KAYBROS Spacialmetric Limited is a Kenyan construction and engineering firm with over 10 years of experience. We deliver residential and commercial construction, structural engineering, geotechnical site investigation, roofing, renovation, and mining support across Kenya and Africa.
+KAYBROS Spacialmetric Limited is a Kenyan construction and engineering firm with over 10 years of experience. We offer construction and renovation services countrywide across Kenya. Our geotechnical site investigation and mining support services are available across Africa.
 
-## Services
-- Construction: End-to-end residential and commercial builds
-- Geotechnical Engineering: Drilling, soil sampling, topographic surveys
-- Mining Support: Quarry operations, gabion walls, rock extraction
+## Services by Region
+
+### Kenya (Countrywide)
+- Construction: End-to-end residential and commercial builds across Kenya
 - Renovation: Interior and exterior upgrades
 - Roofing: Quality roofing installation and repair
+- Structural Engineering: Design and supervision
+
+### Africa (Continent-wide)
+- Geotechnical Engineering: Drilling, soil sampling, borehole logging, topographic surveys
+- Mining Support: Quarry operations, gabion retaining walls, rock extraction, haulage
+- Ground Investigation: Subsurface assessment for construction and infrastructure projects
 
 ## Contact
 - Email: info@kaybros.co.ke
 - Phone: +254 706 676 062
-- Location: Nairobi, Kenya
+- Base: Kenya (mobile teams deployed across Africa)
 - Website: https://kaybros.co.ke
 
 ## Pages
