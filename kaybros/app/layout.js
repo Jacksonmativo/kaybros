@@ -2,6 +2,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Modal from '@/components/Modal'
+import RevealObserver from '@/components/RevealObserver'
 
 const SCHEMA = {
   "@context": "https://schema.org",
@@ -112,6 +113,7 @@ export default function RootLayout({ children }) {
         <main id="top">{children}</main>
         <Footer />
         <Modal />
+        <RevealObserver />
       </body>
     </html>
   )

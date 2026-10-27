@@ -1,7 +1,6 @@
 "use client"
-import BookButton from '@/components/BookButton'
-import Link from 'next/link'
-import "../../styles/services.css";
+import Link from "next/link";
+import "@/styles/services.css";
 
 function Services() {
   const services = [

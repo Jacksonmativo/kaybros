@@ -1,8 +1,7 @@
 "use client"
-import BookButton from '@/components/BookButton'
-import Link from 'next/link'
+import Link from "next/link";
 import EcoDiagram from "@/components/EcoDiagram";
-import "../../styles/about.css";
+import "@/styles/about.css";
 
 function About() {
   return (

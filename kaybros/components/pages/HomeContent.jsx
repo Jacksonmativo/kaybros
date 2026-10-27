@@ -1,6 +1,5 @@
 "use client"
-import BookButton from '@/components/BookButton'
-import "../../styles/home.css";
+import "@/styles/home.css";
 import Services from "./ServicesContent";
 import {
   CalendarDays,

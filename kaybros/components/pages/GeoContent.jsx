@@ -1,8 +1,7 @@
 "use client"
-import BookButton from '@/components/BookButton'
 import { useEffect, useState } from "react";
-import Link from 'next/link'
-import "../../styles/geotechnical-mining.css";
+import Link from "next/link";
+import "@/styles/geotechnical-mining.css";
 
 const PROJECTS = [
   {

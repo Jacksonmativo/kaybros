@@ -1,8 +1,7 @@
 "use client"
-import BookButton from '@/components/BookButton'
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from 'next/link'
-import "../../styles/projects.css";
+import Link from "next/link";
+import "@/styles/projects.css";
 
 const PROJECTS = [
   {

@@ -1,6 +1,5 @@
 "use client"
-import BookButton from '@/components/BookButton'
-import "../../styles/contact.css";
+import "@/styles/contact.css";
 
 function Contact() {
   return (
