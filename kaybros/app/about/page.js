@@ -1,7 +1,10 @@
 import AboutContent from '@/components/pages/AboutContent'
-export const metadata = {
+import { createPageMetadata } from '../seo'
+
+export const metadata = createPageMetadata({
   title: 'About Us',
-  description: 'Learn about KAYBROS Spacialmetric Limited — our team, mission, and decade of construction and engineering excellence across Kenya.',
-  alternates: { canonical: 'https://kaybros.co.ke/about' },
-}
+  description: 'Learn about KAYBROS Spacialmetric Limited — our team, mission, and construction and engineering work across Kenya.',
+  path: '/about',
+})
+
 export default function AboutPage() { return <AboutContent /> }

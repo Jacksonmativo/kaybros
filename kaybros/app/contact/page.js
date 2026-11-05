@@ -1,7 +1,10 @@
 import ContactContent from '@/components/pages/ContactContent'
-export const metadata = {
+import { createPageMetadata } from '../seo'
+
+export const metadata = createPageMetadata({
   title: 'Contact Us',
   description: 'Get in touch with KAYBROS Spacialmetric Limited for your construction, engineering or mining project in Kenya.',
-  alternates: { canonical: 'https://kaybros.co.ke/contact' },
-}
+  path: '/contact',
+})
+
 export default function ContactPage() { return <ContactContent /> }

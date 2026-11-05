@@ -46,8 +46,8 @@ function Home() {
         <div className="hero-badge">
           <ShieldCheck size={38} strokeWidth={1.6} aria-hidden="true" />
           <div>
-            <strong>10+</strong>
-            <span>Years of expertise</span>
+            <strong>2017</strong>
+            <span>Established</span>
           </div>
         </div>
 

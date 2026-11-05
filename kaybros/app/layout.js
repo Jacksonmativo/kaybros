@@ -7,9 +7,15 @@ import RevealObserver from '@/components/RevealObserver'
 const SCHEMA = {
   "@context": "https://schema.org",
   "@type": "GeneralContractor",
+  "@id": "https://kaybros.co.ke/#organization",
   "name": "KAYBROS Spacialmetric Limited",
   "url": "https://kaybros.co.ke/",
-  "logo": "https://kaybros.co.ke/favicon-192.png",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://kaybros.co.ke/favicon-192.png",
+    "width": 192,
+    "height": 192
+  },
   "image": "https://kaybros.co.ke/images/alt1-share.jpg",
   "description": "KAYBROS Spacialmetric Limited offers construction services across Kenya, and geotechnical and mining support across Africa.",
   "telephone": "+254706676062",

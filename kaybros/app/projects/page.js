@@ -1,7 +1,10 @@
 import ProjectsContent from '@/components/pages/ProjectsContent'
-export const metadata = {
+import { createPageMetadata } from '../seo'
+
+export const metadata = createPageMetadata({
   title: 'Our Projects',
   description: 'Explore KAYBROS construction and engineering projects across Kenya — residential, commercial, geotechnical and mining works.',
-  alternates: { canonical: 'https://kaybros.co.ke/projects' },
-}
+  path: '/projects',
+})
+
 export default function ProjectsPage() { return <ProjectsContent /> }
